@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>feed-system</artifactId>
+        <groupId>com.example</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>feed-service</artifactId>
+    <packaging>jar</packaging>
+    <name>Feed service</name>
+    <description>Feed service</description>
+
+    <properties>
+        <debug.suspend>n</debug.suspend>
+        <debug.port>8890</debug.port>
+        <feed-system.base.dir>${project.parent.basedir}</feed-system.base.dir>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>
+                        -Xdebug
+                        -Xrunjdwp:transport=dt_socket,server=y,suspend=${debug.suspend},address=${debug.port}
+                        -DMODULE=feed-service
+                    </jvmArguments>
+                    <arguments>
+                        <argument>--spring.config.additional-location=${CONFIG_FILES}</argument>
+                    </arguments>
+                    <environmentVariables>
+                        <PLATFORM_CONFIG_PATH>${feed-system.base.dir}/config</PLATFORM_CONFIG_PATH>
+                        <CONFIG_FILES>${PLATFORM_CONFIG_PATH}/${MODULE}-application.yml,${PLATFORM_CONFIG_PATH}/app-env/${scope.app-env}.yml</CONFIG_FILES>
+                    </environmentVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <layout>JAR</layout>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
