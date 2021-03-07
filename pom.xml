@@ -23,6 +23,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<spring-cloud.version>2020.0.1</spring-cloud.version>
 		<scope.app-env>dev</scope.app-env>
+		<version.lombok>1.18.16</version.lombok>
 	</properties>
 
 	<modules>
@@ -57,7 +58,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${version.lombok}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

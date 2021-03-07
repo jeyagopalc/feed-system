@@ -12,8 +12,9 @@
     <artifactId>post-service</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>shared</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
