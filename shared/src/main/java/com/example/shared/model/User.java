@@ -1,12 +1,14 @@
-package com.example.shared.dal.model;
+package com.example.shared.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
+@NoArgsConstructor
 @Document(collection = "users")
 public class User {
 
@@ -15,6 +17,10 @@ public class User {
     public static final String FIELD_EMAIL = "email";
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_ENCRYPTED_PASSWORD = "encryptedPassword";
+
+    public User(String userId) {
+        this.userId = userId;
+    }
 
     @Id
     private String id;

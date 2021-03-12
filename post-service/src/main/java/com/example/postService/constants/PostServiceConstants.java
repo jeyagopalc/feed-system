@@ -6,4 +6,6 @@ public interface PostServiceConstants {
     String ARTICLES_PATH = "/articles";
     String FILE = "file";
     String TAGS = "tags";
+    String TITLE = "title";
+    String CONTENT = "content";
 }

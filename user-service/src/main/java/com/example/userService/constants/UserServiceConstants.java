@@ -1,6 +1,6 @@
 package com.example.userService.constants;
 
-public interface UserConstants {
+public interface UserServiceConstants {
     String API = "/api";
     String USER_CONTROLLER_PATH = API + "/users";
 }
