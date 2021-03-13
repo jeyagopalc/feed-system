@@ -40,11 +40,13 @@
                         -DMODULE=feed-service
                     </jvmArguments>
                     <arguments>
-                        <argument>--spring.config.additional-location=${CONFIG_FILES}</argument>
+                        <argument>--spring.config.additional-location=${CONFIG_FILES},${SECRET_FILES}</argument>
                     </arguments>
                     <environmentVariables>
                         <PLATFORM_CONFIG_PATH>${feed-system.base.dir}/config</PLATFORM_CONFIG_PATH>
                         <CONFIG_FILES>${PLATFORM_CONFIG_PATH}/${MODULE}-application.yml,${PLATFORM_CONFIG_PATH}/app-env/${scope.app-env}.yml</CONFIG_FILES>
+                        <PLATFORM_SECRET_PATH>${feed-system.base.dir}/etc/secrets</PLATFORM_SECRET_PATH>
+                        <SECRET_FILES> ${PLATFORM_SECRET_PATH}/shared-secrets.yml</SECRET_FILES>
                     </environmentVariables>
                 </configuration>
                 <executions>

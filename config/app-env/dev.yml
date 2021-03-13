@@ -6,14 +6,11 @@ spring.data.mongodb:
 
 token:
   expiration_time: 864000000
-  secret: hfgry463hf746hf573ydh475fhy5739
+  secret: ${jwt.token.secret}
 
 authorization.token.header:
   name: Authorization
   prefix: Bearer
-
-api.login.url.path: /api/users/login
-api.registration.url.path: /api/users
 
 logging.level:
   org.springframework.data.elasticsearch.core: DEBUG

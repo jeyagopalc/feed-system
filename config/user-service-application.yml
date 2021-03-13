@@ -1,2 +1,5 @@
 server.port: 8080
 spring.application.name: user-service-ws
+
+api.login.url.path: /api/users/login
+api.registration.url.path: /api/users
