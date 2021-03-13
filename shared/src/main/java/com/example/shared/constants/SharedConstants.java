@@ -18,5 +18,11 @@ public interface SharedConstants {
    String QUERY = "query";
    String FIELDS = "fields";
    String FEED_TYPE = "feedType";
+   String TOKEN = "token";
+
+   String KEY_AUTHORIZATION_TOKEN_HEADER_PREFIX = "authorization.token.header.prefix";
+   String KEY_AUTHORIZATION_TOKEN_HEADER_NAME = "authorization.token.header.name";
+   String KEY_TOKEN_SECRET = "token.secret";
+   String KEY_TOKEN_EXPIRATION_TIME = "token.expiration_time";
 
 }

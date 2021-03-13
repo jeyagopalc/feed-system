@@ -50,6 +50,7 @@ public class ArticleResponse {
         ArticleResponse articleResponse = new ArticleResponse();
 
         BeanUtils.copyProperties(esArticle, articleResponse);
+        articleResponse.setContent(esArticle.getPartialContent());
         return articleResponse;
     }
 

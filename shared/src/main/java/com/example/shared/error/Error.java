@@ -1,7 +1,12 @@
 package com.example.shared.error;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+
 import java.text.MessageFormat;
 
+@Data
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Error {
     private String errorCode;
     private String errorDesc;

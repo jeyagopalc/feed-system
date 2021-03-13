@@ -1,8 +1,11 @@
 package com.example.shared.error;
 
 import com.example.shared.exception.BaseException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.common.base.MoreObjects;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +29,18 @@ public class ErrorTracker {
         }
     }
 
+    @JsonIgnore
     public void addError(final Error error) {
-        this.addError(error);
+        this.errors.add(error);
     }
 
+    @JsonIgnore
     public void addError(final ErrorCodes errorCodes, final Object... args) {
+        this.addError(new Error(errorCodes.getCode(), MessageFormat.format(errorCodes.getDescription(), args)));
+    }
+
+    @JsonIgnore
+    public void addError(final ErrorCodes errorCodes) {
         this.addError(new Error(errorCodes.getCode(), errorCodes.getDescription()));
     }
 
@@ -38,9 +48,15 @@ public class ErrorTracker {
         return errors;
     }
 
+    @JsonIgnore
     public boolean isSuccess() {
         return errors.isEmpty();
     }
 
-
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("errors", errors)
+                .toString();
+    }
 }

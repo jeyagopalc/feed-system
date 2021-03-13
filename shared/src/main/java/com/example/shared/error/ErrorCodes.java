@@ -14,7 +14,9 @@ public enum ErrorCodes {
     FEED_006("Error occurred while compressing data articles"),
     FEED_007("Error occurred while decompressing the data"),
     FEED_008("Error occurred while retrieving articles"),
-    FEED_009("{0} is not a valid {1} param");
+    FEED_009("{0} is not a valid {1} param"),
+    FEED_010("User not found"),
+    FEED_011("Failed to create user");;
 
     private final String description;
 

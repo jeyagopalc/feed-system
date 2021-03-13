@@ -1,23 +1,19 @@
 package com.example.shared.model;
 
+import com.example.shared.error.ErrorTracker;
+import com.example.shared.utils.FieldValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @NoArgsConstructor
 @Document(collection = "users")
 public class User {
-
-    public static final String FIELD_FIRST_NAME = "firstName";
-    public static final String FIELD_LAST_NAME = "lastName";
-    public static final String FIELD_EMAIL = "email";
-    public static final String FIELD_USER_ID = "userId";
-    public static final String FIELD_ENCRYPTED_PASSWORD = "encryptedPassword";
-
     public User(String userId) {
         this.userId = userId;
     }
@@ -25,20 +21,26 @@ public class User {
     @Id
     private String id;
 
-    @Field(FIELD_FIRST_NAME)
     private String firstName;
 
-    @Field(FIELD_LAST_NAME)
     private String lastName;
 
-    @Field(FIELD_EMAIL)
+    @Indexed(unique=true)
     private String email;
 
-    @Indexed(unique = true)
-    @Field(FIELD_USER_ID)
+    @Indexed(unique=true)
     private String userId;
 
-    @Field(FIELD_ENCRYPTED_PASSWORD)
+    @JsonIgnore
+    private String password;
+
     private String encryptedPassword;
+
+    public boolean validate(final ErrorTracker errorTracker) {
+        FieldValidator.validateNonEmptyString("email", email, errorTracker);
+        FieldValidator.validateNonEmptyString("password", password, errorTracker);
+
+        return errorTracker.isSuccess();
+    }
 
 }
