@@ -41,5 +41,7 @@
   2.	Used to search artticles efficiently.
 
 ### Database Collections
+#### Users collection
+![image](https://user-images.githubusercontent.com/18320796/111069094-72075500-84f1-11eb-9c62-f5a898129db2.png)
 
 
