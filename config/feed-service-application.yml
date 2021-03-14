@@ -1,2 +1,7 @@
 server.port: 9090
-spring.application.name: feed-service-ws
+spring.application.name: feeds-ws
+
+eureka.client.serviceUrl.defaultZone: http://${discovery.server.userName}:${discovery.server.password}@${discovery.server.host}:${discovery.server.port}/eureka
+eureka.instance.instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+spring.devtools.restart.enabled: true

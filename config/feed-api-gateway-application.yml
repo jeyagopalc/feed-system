@@ -1,0 +1,59 @@
+server.port: 8011
+spring.application.name: feed-api-gateway
+
+spring.main.allow-bean-definition-overriding: true
+
+eureka.client.serviceUrl.defaultZone: http://${discovery.server.userName}:${discovery.server.password}@${discovery.server.host}:${discovery.server.port}/eureka
+eureka.instance.instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+spring.devtools.restart.enabled: true
+
+spring.cloud.gateway.routes:
+  - id: users-ws
+    uri: lb://users-ws
+    predicates:
+      - Path=/users-ws/api/users
+      - Method=POST
+    filters:
+      - RemoveRequestHeader=Cookie
+      - RewritePath=/users-ws/(?<segment>.*), /$\{segment}
+  - id: users-ws-login
+    uri: lb://users-ws
+    predicates:
+      - Path=/users-ws/api/users/login
+      - Method=POST
+    filters:
+      - RemoveRequestHeader=Cookie
+      - RewritePath=/users-ws/(?<segment>.*), /$\{segment}
+  - id: users-ws-get-update-delete
+    uri: lb://users-ws
+    predicates:
+      - Path=/users-ws/api/users/**
+      - Method=GET,PUT,DELETE
+      - Header=Authorization, Bearer (.*)
+    filters:
+      - RemoveRequestHeader=Cookie
+      - AuthorizationHeaderFilter
+      - RewritePath=/users-ws/(?<segment>.*), /$\{segment}
+  - id: posts-ws
+    uri: lb://posts-ws
+    predicates:
+      - Path=/posts-ws/api/post/**
+      - Method=GET,POST,PUT,DELETE
+      - Header=Authorization, Bearer (.*)
+    filters:
+      - RemoveRequestHeader=Cookie
+      - AuthorizationHeaderFilter
+      - RewritePath=/posts-ws/(?<segment>.*), /$\{segment}
+  - id: feeds-ws
+    uri: lb://feeds-ws
+    predicates:
+      - Path=/feeds-ws/api/feed/**
+      - Method=GET,POST,PUT,DELETE
+      - Header=Authorization, Bearer (.*)
+    filters:
+      - RemoveRequestHeader=Cookie
+      - AuthorizationHeaderFilter
+      - RewritePath=/feeds-ws/(?<segment>.*), /$\{segment}
+
+

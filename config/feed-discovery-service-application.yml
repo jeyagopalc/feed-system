@@ -1,0 +1,11 @@
+server.port: ${discovery.server.port}
+spring.application.name: feed-discovery-service
+
+spring.security.user:
+  name: ${discovery.server.userName}
+  password: ${discovery.server.password}
+
+eureka.client:
+  registerWithEureka: false
+  fetchRegistry: false
+  serviceUrl.defaultZone: http://${discovery.server.host}:${discovery.server.port}/eureka

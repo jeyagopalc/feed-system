@@ -9,37 +9,53 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>post-service</artifactId>
+    <artifactId>feed-api-gateway</artifactId>
+
+    <properties>
+        <debug.suspend>n</debug.suspend>
+        <debug.port>8894</debug.port>
+        <feed-system.base.dir>${project.parent.basedir}</feed-system.base.dir>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>shared</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-com.example.feed.apiGateway.security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-commons</artifactId>
-        </dependency>
-    </dependencies>
 
-    <properties>
-        <debug.suspend>n</debug.suspend>
-        <debug.port>8891</debug.port>
-        <feed-system.base.dir>${project.parent.basedir}</feed-system.base.dir>
-    </properties>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
@@ -50,7 +66,7 @@
                     <jvmArguments>
                         -Xdebug
                         -Xrunjdwp:transport=dt_socket,server=y,suspend=${debug.suspend},address=${debug.port}
-                        -DMODULE=post-service
+                        -DMODULE=feed-api-gateway
                     </jvmArguments>
                     <arguments>
                         <argument>--spring.config.additional-location=${CONFIG_FILES},${SECRET_FILES}</argument>
@@ -76,6 +92,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

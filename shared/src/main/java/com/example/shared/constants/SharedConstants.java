@@ -24,5 +24,8 @@ public interface SharedConstants {
    String KEY_AUTHORIZATION_TOKEN_HEADER_NAME = "authorization.token.header.name";
    String KEY_TOKEN_SECRET = "token.secret";
    String KEY_TOKEN_EXPIRATION_TIME = "token.expiration_time";
-
+   String KEY_API_REGISTRATION_URL_PATH = "api.registration.url.path";
+   String KEY_API_LOGIN_URL_PATH = "api.login.url.path";
+   String KEY_API_USERS_ACTUATOR_URL_PATH = "api.users.actuator.url.path";
+   String KEY_API_ZUUL_ACTUATOR_URL_PATH = "api.zuul.actuator.url.path";
 }

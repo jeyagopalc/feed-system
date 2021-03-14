@@ -24,6 +24,7 @@
 		<spring-cloud.version>2020.0.1</spring-cloud.version>
 		<scope.app-env>dev</scope.app-env>
 		<version.lombok>1.18.16</version.lombok>
+		<version.eureka.server>1.4.7.RELEASE</version.eureka.server>
 	</properties>
 
 	<modules>
@@ -31,27 +32,11 @@
 		<module>feed-service</module>
 		<module>post-service</module>
 		<module>user-service</module>
+		<module>feed-discovery-service</module>
+		<module>feed-api-gateway</module>
 	</modules>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<!--spring data elasticsearch-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--		</dependency>-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -93,15 +78,7 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
 	</dependencies>
-
 
 	<dependencyManagement>
 		<dependencies>

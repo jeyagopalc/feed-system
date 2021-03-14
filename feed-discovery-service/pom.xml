@@ -9,16 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>post-service</artifactId>
+    <artifactId>feed-discovery-service</artifactId>
+
+    <properties>
+        <debug.suspend>n</debug.suspend>
+        <debug.port>8893</debug.port>
+        <feed-system.base.dir>${project.parent.basedir}</feed-system.base.dir>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>shared</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-com.example.feed.apiGateway.security -->
         <dependency>
@@ -31,15 +33,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-commons</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-    </dependencies>
+        <!-- https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-apache-client4 -->
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-apache-client4</artifactId>
+            <version>1.19.4</version>
+        </dependency>
 
-    <properties>
-        <debug.suspend>n</debug.suspend>
-        <debug.port>8891</debug.port>
-        <feed-system.base.dir>${project.parent.basedir}</feed-system.base.dir>
-    </properties>
+    </dependencies>
 
     <build>
         <plugins>
@@ -50,7 +53,7 @@
                     <jvmArguments>
                         -Xdebug
                         -Xrunjdwp:transport=dt_socket,server=y,suspend=${debug.suspend},address=${debug.port}
-                        -DMODULE=post-service
+                        -DMODULE=feed-discovery-service
                     </jvmArguments>
                     <arguments>
                         <argument>--spring.config.additional-location=${CONFIG_FILES},${SECRET_FILES}</argument>
@@ -76,6 +79,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

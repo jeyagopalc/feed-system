@@ -9,8 +9,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import static com.example.shared.constants.SharedConstants.KEY_API_LOGIN_URL_PATH;
+import static com.example.shared.constants.SharedConstants.KEY_API_REGISTRATION_URL_PATH;
 
 @Configuration
 @EnableWebSecurity
@@ -34,8 +36,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.POST, environment.getProperty("api.registration.url.path")).permitAll()
-				.antMatchers(HttpMethod.POST, environment.getProperty("api.login.url.path")).permitAll()
+				.antMatchers(HttpMethod.POST, environment.getProperty(KEY_API_REGISTRATION_URL_PATH)).permitAll()
+				.antMatchers(HttpMethod.POST, environment.getProperty(KEY_API_LOGIN_URL_PATH)).permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.addFilter(getAuthenticationFilter())

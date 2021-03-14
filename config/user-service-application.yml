@@ -1,5 +1,7 @@
 server.port: 8080
-spring.application.name: user-service-ws
+spring.application.name: users-ws
 
-api.login.url.path: /api/users/login
-api.registration.url.path: /api/users
+eureka.client.serviceUrl.defaultZone: http://${discovery.server.userName}:${discovery.server.password}@${discovery.server.host}:${discovery.server.port}/eureka
+eureka.instance.instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+spring.devtools.restart.enabled: true
