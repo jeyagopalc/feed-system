@@ -48,10 +48,20 @@
 ![image](https://user-images.githubusercontent.com/18320796/111069207-070a4e00-84f2-11eb-90ed-7f04bfcd89aa.png)
 
 # API's
+	All pagination query parameter are optional. The default values will be used if not provided.
+
+	page – page number. Expected values are positive integers. Default page number is 0.
+	pageSize – Number of item in each page. Default values is 20
+	sortBy – Field to sort. This will be different for every API
+	sortType – ASC or DESC. The default value is different for each API
+	fields – any of the fields present in the response.
+	query – String with multiple key value pairs
+	mode – truncated or full. The default value is full
+
 ## Post Article
 ### Request:
-  Request Type	:  POST
-  URL		        :  /api/post/articles?tags=social,water
+  Request Type	:  POST,
+  URL		:  /api/post/articles?tags=social,water
   
 #### Headers: 
   * Content-Type: multipart/form-data
@@ -67,7 +77,7 @@
 
 ## Get Articles
 ### Request:
-  Request Type	:  GET
+  Request Type	:  GET,
   URL: /api/post/articles?page=0&pageSize=20&sortBy=uploadedDate&sortType=ASC&fields=uploadedDate,content&query=”userId:james”&mode=full
   Default sortType: ASC
   Default sortBy: uploadedDate
@@ -98,7 +108,7 @@
   
 ## Auto complete suggestions
 ### Request:
-  Request Type	:  GET
+  Request Type	:  GET,
   URL: /api/post/articles/search?keywords=socil, wat
 
 ### Response:
