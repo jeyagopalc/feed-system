@@ -44,4 +44,72 @@
 #### Users collection
 ![image](https://user-images.githubusercontent.com/18320796/111069094-72075500-84f1-11eb-9c62-f5a898129db2.png)
 
+#### Article collection
+![image](https://user-images.githubusercontent.com/18320796/111069207-070a4e00-84f2-11eb-90ed-7f04bfcd89aa.png)
+
+# API's
+## Post Article
+### Request:
+  Request Type	:  POST
+  URL		        :  /api/post/articles?tags=social,water
+  
+#### Headers: 
+  * Content-Type: multipart/form-data
+  * Accept: multipart/form-data
+  * Data: file: abcd.pdf
+
+### Response:
+#### When the request is correct with authorized user
+  200 OK [abcd.pdf] uploaded successfully
+
+#### When user is not authorized
+  401 Unauthorized
+
+## Get Articles
+### Request:
+  Request Type	:  GET
+  URL: /api/post/articles?page=0&pageSize=20&sortBy=uploadedDate&sortType=ASC&fields=uploadedDate,content&query=”userId:james”&mode=full
+  Default sortType: ASC
+  Default sortBy: uploadedDate
+
+### Headers: 
+  * Content-Type: application/json
+  * Accept: application/json
+
+### Response:
+#### When the request is correct with authorized user
+  {
+      “pageInfo”: {
+	    “currentPage”: 0,
+	    “numberOfElementInCurrentPage”: 2,
+	    “completeResultsetSize”: 2,
+	    “pageSize”: 2
+     },
+    “articles”: [
+	    {“userId”: “James”, “articleId”: “ddgrhtadwregr”, “content”: “”, “uploadedDate”: “”, “likes”: 20, “unlikes”: 5},
+      {“userId”: “James”, “articleId”: “nvntbntbn”, “content”: “”, “uploadedDate”: “”, “likes”: 40, “unlikes”: 10},
+    ]	
+  }
+
+  200 OK
+
+#### When user is not authorized
+  401 Unauthorized
+  
+## Auto complete suggestions
+### Request:
+  Request Type	:  GET
+  URL: /api/post/articles/search?keywords=socil, wat
+
+### Response:
+#### When the request is correct with authorized user
+  {
+      [“social”, “water”]
+  }
+  200 OK 
+
+#### When user is not authorized
+  401 Unauthorized
+
+
 
